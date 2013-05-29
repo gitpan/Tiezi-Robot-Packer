@@ -21,7 +21,7 @@ my %WriteMakefileArgs = (
   "NAME" => "Tiezi::Robot::Packer",
   "PREREQ_PM" => {},
   "TEST_REQUIRES" => {},
-  "VERSION" => "0.02",
+  "VERSION" => "0.03",
   "test" => {
     "TESTS" => ""
   }

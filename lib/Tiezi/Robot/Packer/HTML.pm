@@ -18,7 +18,7 @@ sub open_packer {
 
 sub format_before_toc {
     my ( $self, $tz ) = @_;
-    my $title      = "$tz->{topic}{name}《$tz->{topic}{title}》";
+    my $title      = "$tz->{topic}{name}《$tz->{topic}{title}》" || '';
     my $css = $self->generate_css();
     my $toc_url  = $tz->{topic}{url} || '';
     $self->{fh}->print(qq[

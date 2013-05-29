@@ -9,6 +9,7 @@ use Encode;
 sub format_filename {
     my ($self, $filename) = @_;
     $filename ||= $self->{filename};
+    $filename=~s/[\[\]\(\)?`@!#\$\%{}:|"'<>&;\s\/\\*^,~]//g;
     $self->{filename} = encode( locale  => $filename);
 }
 
