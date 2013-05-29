@@ -5,13 +5,13 @@ package  Tiezi::Robot::Packer;
 use Moo;
 use Tiezi::Robot::Packer::HTML;
 
-our $VERSION = 0.01;
+our $VERSION = 0.02;
 
 sub init_packer {
-      my ( $self, $site , $opt) = @_;
-      my $s = $opt?'%$opt':'';
-      my $packer = eval qq[new Tiezi::Robot::Packer::$site($s)];
-      return $packer;
+    my ( $self, $site , $opt) = @_;
+    my $s = $opt?'%$opt':'';
+    my $packer = eval qq[new Tiezi::Robot::Packer::$site($s)];
+    return $packer;
 }
 
 no Moo;

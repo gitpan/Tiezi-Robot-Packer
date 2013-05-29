@@ -21,38 +21,38 @@ sub format_before_toc {
     my $title      = "$tz->{topic}{name}《$tz->{topic}{title}》";
     my $css = $self->generate_css();
     my $toc_url  = $tz->{topic}{url} || '';
-$self->{fh}->print(qq[
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<html>
+    $self->{fh}->print(qq[
+        <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+        <html>
 
-<head>
-<title> $title </title>
-<meta http-equiv="content-type" content="text/html; charset=utf-8">
-<style type="text/css">
-$css
-</style>
-</head>
+        <head>
+        <title> $title </title>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <style type="text/css">
+        $css
+        </style>
+        </head>
 
-<body>
-<div id="title"><a href="$toc_url">$title</a></div>
-]);
+        <body>
+        <div id="title"><a href="$toc_url">$title</a></div>
+        ]);
 }
 
 sub generate_css
 {
     my $css = <<__CSS__;
 body {
-	font-size: medium;
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	margin: 1em 8em 1em 8em;
-	text-indent: 2em;
-	line-height: 145%;
+    font-size: medium;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    margin: 1em 8em 1em 8em;
+    text-indent: 2em;
+    line-height: 145%;
 }
 #title, .fltitle {
-	border-bottom: 0.2em solid #ee9b73;
-	margin: 0.8em 0.2em 0.8em 0.2em;
-	text-indent: 0em;
-	font-size: x-large;
+    border-bottom: 0.2em solid #ee9b73;
+    margin: 0.8em 0.2em 0.8em 0.2em;
+    text-indent: 0em;
+    font-size: x-large;
     font-weight: bold;
     padding-bottom: 0.25em;
 }
@@ -67,12 +67,12 @@ sub format_toc {
 
     my $toc=qq`<li><a href="#toc0">$r->{topic}{time} $r->{topic}{name}</a></li>\n`;
 
-for my $i (0 .. $#{$r->{floors}}){
-    my $f = $r->{floors}[$i];
-    next if($f->{skip});
+    for my $i (0 .. $#{$r->{floors}}){
+        my $f = $r->{floors}[$i];
+        next if($f->{skip});
 
-    my $id = $f->{id} || ($i+1);
-    $toc.=qq`<li><a href="#toc$id">$f->{title} $f->{time} $f->{name}</a></li>\n`;
+        my $id = $f->{id} || ($i+1);
+        $toc.=qq`<li><a href="#toc$id">$f->{title} $f->{time} $f->{name}</a></li>\n`;
     }   
 
     $toc = qq[<div id="toc"><ol>$toc</ol></div>\n]; 

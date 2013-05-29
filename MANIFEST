@@ -3,6 +3,7 @@ MANIFEST
 META.yml
 Makefile.PL
 README
+README.md
 dist.ini
 lib/Tiezi/Robot/Packer.pm
 lib/Tiezi/Robot/Packer/Base.pm
