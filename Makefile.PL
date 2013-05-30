@@ -19,9 +19,11 @@ my %WriteMakefileArgs = (
   "EXE_FILES" => [],
   "LICENSE" => "perl",
   "NAME" => "Tiezi::Robot::Packer",
-  "PREREQ_PM" => {},
+  "PREREQ_PM" => {
+    "Moo" => 0
+  },
   "TEST_REQUIRES" => {},
-  "VERSION" => "0.03",
+  "VERSION" => "0.04",
   "test" => {
     "TESTS" => ""
   }

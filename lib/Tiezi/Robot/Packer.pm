@@ -5,7 +5,7 @@ package  Tiezi::Robot::Packer;
 use Moo;
 use Tiezi::Robot::Packer::HTML;
 
-our $VERSION = 0.03;
+our $VERSION = 0.04;
 
 sub init_packer {
     my ( $self, $site , $opt) = @_;
