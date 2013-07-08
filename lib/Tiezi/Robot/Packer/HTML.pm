@@ -7,21 +7,14 @@ use utf8;
 use Moo;
 extends 'Tiezi::Robot::Packer::Base';
 
-use IO::File;
-
-sub open_packer {
-    my ($self, $tz) = @_;
-
-    $self->format_filename("$tz->{topic}{name}-$tz->{topic}{title}.html");
-    $self->{fh} = IO::File->new($self->{filename}, '>:utf8');
-}
+has '+suffix' => ( default => sub { 'html' } );
 
 sub format_before_toc {
     my ( $self, $tz ) = @_;
     my $title      = "$tz->{topic}{name}《$tz->{topic}{title}》" || '';
     my $css = $self->generate_css();
     my $toc_url  = $tz->{topic}{url} || '';
-    $self->{fh}->print(qq[
+    return qq[
         <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
         <html>
 
@@ -35,7 +28,7 @@ sub format_before_toc {
 
         <body>
         <div id="title"><a href="$toc_url">$title</a></div>
-        ]);
+        ];
 }
 
 sub generate_css
@@ -75,23 +68,22 @@ sub format_toc {
         $toc.=qq`<li><a href="#toc$id">$f->{title} $f->{time} $f->{name}</a></li>\n`;
     }   
 
-    $toc = qq[<div id="toc"><ol>$toc</ol></div>\n]; 
-    $self->{fh}->print($toc);
+    $toc = qq[<div id="toc"><ol>$toc</ol></div>]; 
+    return $toc;
 }
 
 sub format_before_floor {
     my ($self, $tz) = @_;
 
-    $self->{fh}->print('<div id="content">'."\n\n");
-
     my $f = $tz->{topic};
     my $ft = <<__FLOOR__;
-<div class="f">
+<div id="content">
+<div class="floor">
 <div class="fltitle">000# <a name="toc0">$f->{title} $f->{time} $f->{name}</a></div>
 <div class="flcontent">$f->{content}</div>
 </div>
 __FLOOR__
-    $self->{fh}->print("$ft\n\n");
+   return $ft; 
 }
 
 sub format_floor {
@@ -108,20 +100,13 @@ sub format_floor {
 </div>
 __FLOOR__
 
-    $self->{fh}->print("$ft\n\n");
+    return $ft;
 } ## end sub format_floor
 
 sub format_after_floor {
     my ( $self, $toc ) = @_;
 
-    $self->{fh}->print("</div></body></html>");
-}
-
-
-sub close_packer {
-    my ($self, $toc) = @_;
-
-    $self->{fh}->close;
+    return "</div></body></html>";
 }
 
 no Moo;

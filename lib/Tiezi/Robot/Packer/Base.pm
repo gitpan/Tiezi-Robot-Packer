@@ -3,24 +3,20 @@ use strict;
 use warnings;
 package  Tiezi::Robot::Packer::Base;
 use Moo;
+extends 'Novel::Robot::Packer::Base';
 use Encode::Locale;
 use Encode;
 
-sub format_filename {
-    my ($self, $filename) = @_;
-    $filename ||= $self->{filename};
-    $filename=~s/[\[\]\(\)?`@!#\$\%{}:|"'<>&;\s\/\\*^,~]//g;
-    $self->{filename} = encode( locale  => $filename);
+sub format_default_filename {
+    my ($self, $tz) = @_;
+   return  "$tz->{topic}{name}-$tz->{topic}{title}.$self->{suffix}";
 }
 
-sub open_packer { }
 sub format_before_toc { }
 sub format_toc { }
-sub format_after_toc { }
 sub format_before_floor { }
 sub format_floor { }
 sub format_after_floor { }
-sub close_packer { }
 
 
 no Moo;
