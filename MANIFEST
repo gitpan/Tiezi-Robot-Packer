@@ -8,3 +8,4 @@ dist.ini
 lib/Tiezi/Robot/Packer.pm
 lib/Tiezi/Robot/Packer/Base.pm
 lib/Tiezi/Robot/Packer/HTML.pm
+lib/Tiezi/Robot/Packer/TXT.pm

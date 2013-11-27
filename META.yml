@@ -13,6 +13,8 @@ meta-spec:
   version: 1.4
 name: Tiezi-Robot-Packer
 requires:
+  HTML::FormatText: 0
+  HTML::TreeBuilder: 0
   Moo: 0
   Novel::Robot::Packer: 0
-version: 0.05
+version: 0.06

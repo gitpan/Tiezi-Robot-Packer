@@ -20,11 +20,13 @@ my %WriteMakefileArgs = (
   "LICENSE" => "perl",
   "NAME" => "Tiezi::Robot::Packer",
   "PREREQ_PM" => {
+    "HTML::FormatText" => 0,
+    "HTML::TreeBuilder" => 0,
     "Moo" => 0,
     "Novel::Robot::Packer" => 0
   },
   "TEST_REQUIRES" => {},
-  "VERSION" => "0.05",
+  "VERSION" => "0.06",
   "test" => {
     "TESTS" => ""
   }

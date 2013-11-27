@@ -4,8 +4,9 @@ use warnings;
 package  Tiezi::Robot::Packer;
 use Moo;
 use Tiezi::Robot::Packer::HTML;
+use Tiezi::Robot::Packer::TXT;
 
-our $VERSION = 0.05;
+our $VERSION = 0.06;
 
 sub init_packer {
     my ( $self, $site , $opt) = @_;
