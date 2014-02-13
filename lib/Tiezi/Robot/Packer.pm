@@ -1,19 +1,20 @@
-# ABSTRACT: 贴子打包引擎
-use strict;
-use warnings;
+#ABSTRACT: 贴子打包引擎
 package  Tiezi::Robot::Packer;
-use Moo;
-use Tiezi::Robot::Packer::HTML;
-use Tiezi::Robot::Packer::TXT;
 
-our $VERSION = 0.06;
+our $VERSION = 0.07;
 
-sub init_packer {
-    my ( $self, $site , $opt) = @_;
-    my $s = $opt?'%$opt':'';
-    my $packer = eval qq[new Tiezi::Robot::Packer::$site($s)];
-    return $packer;
+sub new {
+    my ( $self, %opt ) = @_;
+    $opt{type} ||= 'html';
+    my $module = "Tiezi::Robot::Packer::$opt{type}";
+    eval "require $module;";
+    bless { %opt }, $module;
 }
 
-no Moo;
+sub filter_skip_floors {
+    my ($self, $tz) = @_;
+    my @new_floors = grep { ! $_->{skip} } @{$tz->{floors}};
+    $tz->{floors} = \@new_floors;
+}
+
 1;
