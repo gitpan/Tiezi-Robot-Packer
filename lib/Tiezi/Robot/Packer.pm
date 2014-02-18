@@ -1,7 +1,7 @@
 #ABSTRACT: 贴子打包引擎
 package  Tiezi::Robot::Packer;
 
-our $VERSION = 0.07;
+our $VERSION = 0.08;
 
 sub new {
     my ( $self, %opt ) = @_;
